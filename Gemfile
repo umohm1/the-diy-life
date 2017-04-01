@@ -15,6 +15,7 @@ gem 'bootstrap-sass'
 gem 'pry'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'omniauth-facebook'
+gem 'devise'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
