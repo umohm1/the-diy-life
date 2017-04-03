@@ -18,7 +18,7 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
-          <li><%= link_to "Welcome, #{current_user.username}!", '#' %></li>
+          <li><%= link_to "Welcome, #{current_user.username}!", user_path(current_user) %></li>
         <% end %>
         <% if !current_user %>
         <li><%= link_to 'Log In', new_user_session_path %></li>
