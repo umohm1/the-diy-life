@@ -6,7 +6,6 @@ class User < ApplicationRecord
          :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
   validates :email, presence: true, uniqueness: true
-  validates :username, presence: true
 
   has_many :user_projects
   has_many :projects, through: :user_projects
