@@ -1,6 +1,5 @@
 class Project < ApplicationRecord
 
-  attr_accessor :tag_name
 
   has_many :user_projects
   has_many :users, through: :user_projects

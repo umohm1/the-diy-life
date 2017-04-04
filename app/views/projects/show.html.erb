@@ -1,7 +1,13 @@
 <div class="show-project">
     <img class="projectImage" src="<%= @project.image.url(:medium) %>" ><br><br>
 </div>
-<%= @project.name %>
-<%= @project.materials %>
-<%= @project.length %>
-<%= @project.tag_name %>
+
+
+<p><%= @project.name %></p>
+<p><%= @project.materials %></p>
+<p><%= @project.length %></p>
+<p><%= @project.themes %></p>
+
+
+<%= link_to "Edit Project", edit_project_path %><br>
+<%= link_to "Delete Pin", project_path(@project), :confirm => "Are you sure?", :method => :delete, :prompt => "Are you sure?" %><br>
