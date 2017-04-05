@@ -1,3 +1,17 @@
-<div class="show-project">
-    <img class="projectImage" src="<%= @project.image.url(:medium) %>" ><br><br>
+<!-- <div class="show-project">
+    <img class="projectImage" src="<%#= @project.image.url(:medium) %>" ><br><br>
+</div> -->
+
+<div class="container">
+  <center><h1>Your Projects!</h1></center>
+  <div class="row">
+    <div class="col-md-6">
+      <% @projects.each do |project| %>
+        <%= link_to project.name, project_path(project)%>
+        <div class="show-project">
+            <img class="projectImage" src="<%= project.image.url(:medium) %>" ><br><br>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

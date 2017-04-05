@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 
   def index
-    @project = current_user.projects
+    @projects = current_user.projects
   end
 
   def new
@@ -45,6 +45,6 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :materials, :length, :image, :theme_name, theme_ids:[], theme_attributes: [:name])
+    params.require(:project).permit(:name, :materials, :length, :image, :all_themes)
   end
 end
