@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :user_projects
   resources :projects
-  resources :profiles, only: [:show]
+  resources :users, only: [:show]
 
 
 
