@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
 
+
   has_many :user_projects
   has_many :projects, through: :user_projects
 
@@ -17,5 +18,10 @@ class User < ApplicationRecord
     user.email = auth.info.email
     user.password = Devise.friendly_token[0,20]
   end
+ end
+
+ def self.most_projects
+   #returns the user w/ the most projects
+   User.select('users.*, COUNT(project.id) FROM user_projects')
  end
 end
