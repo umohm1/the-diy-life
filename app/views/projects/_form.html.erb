@@ -30,15 +30,20 @@
  <div class="form-group">
     <label for="project_tag_id" class="col-sm-2 control-label">Theme</label>
     <div class="col-sm-10 ">
-    <div class="scroll form-control">
-    <%= f.text_field :all_themes %>
+    <div class=" form-control">
+    <!-- <%= f.text_field :all_themes, placeholder: "Or Create a New Theme!", class: "form-control" %><br /> %> -->
     <%#= f.collection_select :themes %>
+    <% Theme.all.each do |theme| %>
+    <%= check_box_tag "project[theme_ids][]", theme.id, f.object.themes.include?(theme) %>
+      <%= theme.name %>
+    <% end %>
+    <%= f.text_field :all_themes, placeholder: "Or Create a New Theme!" %><br /> %>
+
 </div>
 
 <!-- <%= f.fields_for :themes, @project.themes.build do |themes_fields| %>
   <%= themes_fields.text_field :name, placeholder: "Or Create a New Theme!", class: "form-control" %><br />
   <% end %> -->
-  <%#= f.text_field :all_themes %>
   </div>
 </div>
 

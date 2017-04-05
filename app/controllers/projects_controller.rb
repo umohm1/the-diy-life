@@ -45,6 +45,6 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :materials, :length, :image, :all_themes)
+    params.require(:project).permit(:name, :materials, :length, :image, :all_themes, theme_ids: [])
   end
 end
