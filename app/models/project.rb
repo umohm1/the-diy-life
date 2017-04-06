@@ -3,8 +3,8 @@ class Project < ApplicationRecord
 attr_accessor :image
 
   belongs_to :user
-  #has_many :users
-  has_many :themes
+  has_many :project_themes
+  has_many :themes, through: :project_themes
 
   validates_presence_of :name, :materials, :length
 

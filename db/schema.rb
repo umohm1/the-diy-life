@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406154730) do
+ActiveRecord::Schema.define(version: 20170406163109) do
+
+  create_table "project_themes", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "theme_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_themes_on_project_id"
+    t.index ["theme_id"], name: "index_project_themes_on_theme_id"
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"

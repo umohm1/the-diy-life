@@ -22,6 +22,13 @@ class User < ApplicationRecord
 
  def self.most_projects
    #returns the user w/ the most projects
-   User.select('users.*, COUNT(project.id) FROM user_projects')
+  #  User.select('users.*, COUNT(project.id) FROM ')
+  # joins(:projects)
+  # .select("users.*, count(projects.id) as scount")
+  # .group("users.id")
+  # .order("scount DESC")
+  # joins("JOIN projects ON users.id = projects.user_id ")
+   Project.all.group_by(&:user_id).count
+
  end
 end
