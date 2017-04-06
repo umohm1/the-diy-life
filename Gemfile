@@ -17,6 +17,7 @@ gem 'dotenv-rails', :groups => [:development, :test]
 gem 'omniauth-facebook'
 gem 'devise'
 gem "paperclip", "~> 5.0.0"
+gem "font-awesome-rails"
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
