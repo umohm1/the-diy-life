@@ -3,10 +3,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  resources :user_projects
-  resources :projects
-  resources :users, only: [:show]
-
-
-
+  resources :users do
+    resources :projects
+  end
 end

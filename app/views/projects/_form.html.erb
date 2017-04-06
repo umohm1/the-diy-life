@@ -1,6 +1,6 @@
 <div class="row">
 
-<%= form_for @project, html: { multipart: true } do |f| %>
+<%= form_for [@user, @project], html: { multipart: true } do |f| %>
 <%= render 'errors/error_messages' %>
 
 <div class="form-group">
@@ -35,7 +35,7 @@
     <%= check_box_tag "project[theme_ids][]", theme.id, f.object.themes.include?(theme) %>
       <%= theme.name %>
     <% end %>
-    <%= f.text_field :all_themes, placeholder: "Or Create a New Theme!" %><br /> %>
+    <%= f.text_field :all_themes, placeholder: "Or Create a New Theme!" %><br />
 
 </div>
   </div>

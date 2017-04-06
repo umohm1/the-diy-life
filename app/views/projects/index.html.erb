@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-md-6">
       <% @projects.each do |project| %>
-        <%= link_to project.name, project_path(project)%>
+        <%= link_to project.name, user_project_path(current_user, project)%>
         <div class="show-project">
             <img class="projectImage" src="<%= project.image.url(:medium) %>" ><br><br>
         </div>
