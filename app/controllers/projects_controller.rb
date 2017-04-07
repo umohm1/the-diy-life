@@ -1,8 +1,12 @@
 class ProjectsController < ApplicationController
-  before_action :find_user, only: [:new, :edit]
+  before_action :find_user, only: [:new, :edit, :create]
 
   def index
-    @projects = current_user.projects
+    if params[:other_users] == "true"
+      @projects = Project.other_users_projects(current_user.id)
+    else
+      @projects = current_user.projects
+    end
   end
 
   def new
