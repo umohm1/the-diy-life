@@ -11,7 +11,7 @@ attr_accessor :image
   accepts_nested_attributes_for :themes
 
 
-  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :image, styles: {medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
 scope :other_users_projects, ->(id){where.not(user_id: id)}
