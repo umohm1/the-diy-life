@@ -24,8 +24,5 @@ end
 
 def all_themes
   themes.map(&:name).join(" ,")
-end
-
-
-
+ end
 end

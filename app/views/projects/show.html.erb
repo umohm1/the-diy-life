@@ -3,6 +3,8 @@
     <img class="projectImage" src="<%= @project.image.url(:medium) %>" ><br><br>
 </div>
 
+<%= render 'shared/error_messages' %>
+
 
 <p><%= @project.name %></p>
 <p><%= @project.materials %></p>
