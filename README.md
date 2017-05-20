@@ -6,13 +6,15 @@ Web application that allows users to create DIY projects and find inspiration fo
 ## Installation
 
 1. Clone The DIY Life to your local computer
-2. Run `bundle install` for necessary gem Installation
-3. Run `rails s` to start the server by navigating to the provided IP address
+2. Run `bundle install` for necessary gem installation
+3. Run `rails s` to start the server and navigate to the provided IP address
 
-##Contribution
+
+## Contribution
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/umohm1/the-diy-life. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
-##License
+
+## License
 
 The gem is available as open source under the terms of the MIT License.
