@@ -12,6 +12,8 @@
 <label>Theme:</label>
 <p><%= @project.all_themes %></p>
 
+Created by: <%= current_user.name %>
+<br></br>
 
 <%= link_to "Edit Project", edit_user_project_path %><br>
 <%= link_to "Delete Project", user_project_path, :confirm => "Are you sure?", :method => :delete, :prompt => "Are you sure?" %><br>

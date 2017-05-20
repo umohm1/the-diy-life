@@ -8,7 +8,7 @@ attr_accessor :image
 
   validates_presence_of :name, :materials, :length
 
-  accepts_nested_attributes_for :themes
+  #accepts_nested_attributes_for :themes
 
 
   has_attached_file :image, styles: {medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
