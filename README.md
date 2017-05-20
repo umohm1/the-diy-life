@@ -1,24 +1,18 @@
-# README
+# The DIY Life
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+Web application that allows users to create DIY projects and find inspiration for their next upcoming projects from like minded users.
 
-* Ruby version
+## Installation
 
-* System dependencies
+1. Clone The DIY Life to your local computer
+2. Run `bundle install` for necessary gem Installation
+3. Run `rails s` to start the server by navigating to the provided IP address
 
-* Configuration
+##Contribution
 
-* Database creation
+Bug reports and pull requests are welcome on GitHub at https://github.com/umohm1/the-diy-life. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
-* Database initialization
+##License
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The gem is available as open source under the terms of the MIT License.
