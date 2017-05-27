@@ -8,13 +8,10 @@ attr_accessor :image
 
   validates_presence_of :name, :materials, :length
 
-  #accepts_nested_attributes_for :themes
-
-
   has_attached_file :image, styles: {medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
-scope :other_users_projects, ->(id){where.not(user_id: id)}
+  scope :other_users_projects, ->(id){where.not(user_id: id)}
 
 def all_themes=(all_themes)
   self.themes = all_themes.split(",").map do |t|
