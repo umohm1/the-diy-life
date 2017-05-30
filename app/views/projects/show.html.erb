@@ -12,7 +12,7 @@
 <label>Theme:</label>
 <p><%= @project.all_themes %></p>
 
-Created by: <%= current_user.name %>
+Created by: <%= User.find(@project.user_id).name %>
 <br></br>
 
 <%= link_to "Edit Project", edit_user_project_path %><br>
