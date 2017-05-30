@@ -17,4 +17,4 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/umohm1
 
 ## License
 
-This application is available as open source under the terms of the MIT License.
+This application is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
