@@ -1,6 +1,6 @@
 class Project < ApplicationRecord
 
-attr_accessor :image
+  attr_accessor :image
 
   belongs_to :user
   has_many :project_themes
@@ -11,15 +11,15 @@ attr_accessor :image
   has_attached_file :image, styles: {medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
-  scope :other_users_projects, ->(id){where.not(user_id: id)}
+  scope :other_users_projects, -> (id) {where.not(user_id: id)}
 
-def all_themes=(all_themes)
-  self.themes = all_themes.split(",").map do |t|
-    Theme.where(name: t).first_or_create!
+  def theme_attributes=(theme_attributes)
+    theme_attributes.split(",").map do |theme_name|
+      self.themes << Theme.where(name: theme_name).first_or_create!
+    end
   end
-end
 
-def all_themes
-  themes.map(&:name).join(" ,")
- end
+  def theme_attributes
+    themes.map(&:name).join(" ,")
+  end
 end

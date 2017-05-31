@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406163109) do
+ActiveRecord::Schema.define(version: 20170531223138) do
 
   create_table "project_themes", force: :cascade do |t|
     t.integer  "project_id"
@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 20170406163109) do
 
   create_table "themes", force: :cascade do |t|
     t.string   "name"
-    t.integer  "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
