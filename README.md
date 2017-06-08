@@ -7,6 +7,7 @@ Web application that allows users to create DIY projects and find inspiration fo
 
 1. Clone The DIY Life to your local computer
 2. Run `bundle install` for necessary gem installation
+3. Run `rake db:migrate`
 3. Run `rails s` to start the server and navigate to the provided IP address
 
 
