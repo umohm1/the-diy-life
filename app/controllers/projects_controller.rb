@@ -29,6 +29,14 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
+    if !current_user
+      redirect_to new_user_session_path, alert: "This project can only be edited by it's author."
+    elsif current_user != @project.user
+      redirect_to user_project_path, alert: "You must be the author in order to edit a project."
+    else
+      @project.update(project_params)
+        redirect_to user_project_path(current_user, @project)
+    end
   end
 
 

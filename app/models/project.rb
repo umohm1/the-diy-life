@@ -20,6 +20,6 @@ class Project < ApplicationRecord
   end
 
   def theme_attributes
-    themes.map(&:name).join(" ,")
+    themes.map(&:name).join(" ,") #themes.map {|theme| theme.name}.join(",")
   end
 end
