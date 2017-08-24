@@ -15,3 +15,12 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+
+
+(function () {
+    $(document).on("click", ".otherProjects", function(e) {
+      //prevent form from submitting the default way
+      e.preventDefault();
+      alert("we r hack3rz");
+    });
+})();

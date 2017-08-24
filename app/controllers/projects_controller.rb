@@ -7,6 +7,10 @@ class ProjectsController < ApplicationController
     else
       @projects = current_user.projects
     end
+      respond_to do |f|
+          f.html {render :index}
+          f.json {render json: @projects}
+    end
   end
 
   def new
@@ -15,6 +19,10 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    respond_to do |f|
+        f.html {render :show}
+        f.json {render json: @project}
+    end
   end
 
   def create
