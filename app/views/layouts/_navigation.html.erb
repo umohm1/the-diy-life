@@ -13,7 +13,7 @@
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
           <li><%= link_to "Welcome, #{current_user.name}!", user_path(current_user) %></li>
-          <li><%= link_to "Newly Listed Projects", user_projects_path(current_user, other_users: true) %>
+          <li><%= link_to "Newly Listed Projects", user_projects_path(current_user, other_users: true), class: "otherProjects" %>
         <% end %>
         <% if !current_user %>
         <li><%= link_to 'Log In', new_user_session_path %></li>
