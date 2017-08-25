@@ -21,6 +21,8 @@
     $(document).on("click", ".otherProjects", function(e) {
       //prevent form from submitting the default way
       e.preventDefault();
-      alert("we r hack3rz");
+      $.get("/projects") + ".json" + function(data) {
+        $("otherProjects").appendTo("body");
+    //   alert("we r hack3rz");
     });
 })();
