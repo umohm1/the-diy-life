@@ -17,12 +17,33 @@
 //= require_tree .
 
 
-(function () {
-    $(document).on("click", ".otherProjects", function(e) {
-      //prevent form from submitting the default way
-      e.preventDefault();
-      $.get("/projects") + ".json" + function(data) {
-        $("otherProjects").appendTo("body");
-    //   alert("we r hack3rz");
-    });
-})();
+(function() {
+  $(document).on('click', '.otherProjects', function(event) {
+    //console.log('other projects clicked')
+    $('.app-container').html("")
+    $.ajax({
+      type: 'GET',
+      dataType: 'json',
+      url: '/projects?other_users=true',
+      success: function(data) {
+         //console.log(data)
+         for(var i = 0; i < data.length; i++) {
+            let name = data[i].name
+            let materials = data[i].materials
+            // console.log(name)
+            let projectHTML = ``
+            projectHTML += `<div class="row">`
+            projectHTML += `<div class="col-md-6">`
+            projectHTML += `<a>${name}</a>`
+            projectHTML += `</div></div>`
+
+            $(".app-container").append(projectHTML)
+            //$(".app-container").append(`<p>${materials}</p>`)
+         }
+
+        //$(data).append("body")
+      }
+    })
+    event.preventDefault()
+  })
+})()
