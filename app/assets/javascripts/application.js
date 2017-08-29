@@ -25,8 +25,8 @@
             dataType: 'json',
             url: '/projects?other_users=true',
             success: function(data) {
-                $(".app-container").html(`<div class="container" id="indexcontainer"></div>`)//create div w/ container class, give specific id to reference
-                $("#indexcontainer").html(`<div class="col-md-6" id="title">New Projects!</div>`) //.innerHTML new container id
+                $(".app-container").html(`<div class="container" id="indexcontainer"></div>`)
+                $("#indexcontainer").html(`<h1><div class="col-md-15" id="title">New Projects!</div></h1>`)
                 for(var i = 0; i < data.length; i++) {
                     let name = data[i].name
                     let image = data[i].image
@@ -34,14 +34,12 @@
                     projectHTML += `<div class="row">`
                     projectHTML += `<div class="col-md-6">`
                     projectHTML += `<a>${name}</a>`
-                    projectHTML += `<img src="${image}" height=100 width=100>`
-                    projectHTML += `</div></div>`
-                    // projectHTML += `<img src="project.image.url(:medium)" />`
-                    $("#indexcontainer").append(projectHTML) //select id of title
-                    // $(".app-container").append(image)
-                    // let projectImage = ``
-                    // $(".show-project").append("<img src="project.image.url(:medium)" />")
-                    // $(".app-container").append(`<p>${materials}</p>`)
+                    projectHTML += `<img src="${image}" height=500 width=500>`
+                    projectHTML += `</div></div><br>`
+                    $("#indexcontainer").append(projectHTML)
+                    $("#title").css ({
+                        'text-align': 'center'
+                    })
                 }
             }
         })
