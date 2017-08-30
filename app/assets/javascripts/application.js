@@ -33,16 +33,20 @@
                     let projectHTML = ``
                     projectHTML += `<div class="row">`
                     projectHTML += `<div class="col-md-6">`
-                    projectHTML += `<a>${name}</a>`
+                    projectHTML += `<a href="/users/user_id/projects/id">${name}</a>`
                     projectHTML += `<img src="${image}" height=500 width=500>`
                     projectHTML += `</div></div><br>`
                     $("#indexcontainer").append(projectHTML)
                     $("#title").css ({
                         'text-align': 'center'
                     })
+                    // $("<a>", {
+                    //     href: /users/user_id/projects/id
+                    // })
                 }
             }
         })
         event.preventDefault()
     })
 })()
+// /users/user_id/projects/id
