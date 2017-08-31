@@ -66,6 +66,9 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def image
+  end 
+
   private
 
   def find_user
