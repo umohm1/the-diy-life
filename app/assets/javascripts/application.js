@@ -52,11 +52,8 @@ function bindClickListeners() {
     })
 
     $(document).on('click', '.col-md-6 a', function(event) {
-        var projectId = $(this).data('project');
-        var userId = $(this).data('user');
-        // var userName = $(this).data()
-        // console.log(projectId)
-        // console.log(userId)
+      var projectId = $(this).data('project');
+      var userId = $(this).data('user');
       $(".app-container").html("")
       $.ajax({
         type: 'GET',
@@ -66,7 +63,7 @@ function bindClickListeners() {
             // debugger
             let projectHTML = ``
             projectHTML += `<div class="show-project">`
-            projectHTML += `<img src="${data.image}" height=400 width=400>`
+            projectHTML += `<img src="${data.image}" data-img=${data.image} height=400 width=400>`
             projectHTML += `<p><label>Name:</label></p>`
             projectHTML += `<p>${data.name}</p>`
             projectHTML += `<p><label>Material:</label></p>`
@@ -74,9 +71,9 @@ function bindClickListeners() {
             projectHTML += `<p><label>Length:</label></p>`
             projectHTML += `<p>${data.length}</p>`
             projectHTML += `<p><label>Themes:</label></p>`
-            projectHTML += `<p>${data.themes}</p>`
+            projectHTML += `<p>${data.themes[0].name}</p>`
             projectHTML += `Created by: ${data.user.name}`
-            projectHTML += `</div><br>`
+            projectHTML += `</div><br><br>`
             $(".app-container").append(projectHTML)
             // console.log(data)
         }
@@ -84,3 +81,4 @@ function bindClickListeners() {
       event.preventDefault()
     })
 }
+//Clicking on other projects create other show views not to render
