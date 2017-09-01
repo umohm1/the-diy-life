@@ -54,14 +54,31 @@ function bindClickListeners() {
     $(document).on('click', '.col-md-6 a', function(event) {
         var projectId = $(this).data('project');
         var userId = $(this).data('user');
+        // var userName = $(this).data()
         // console.log(projectId)
         // console.log(userId)
+      $(".app-container").html("")
       $.ajax({
         type: 'GET',
         dataType: 'json',
         url: `/users/${userId}/projects/${projectId}`,
         success: function(data) {
-            console.log(data)
+            // debugger
+            let projectHTML = ``
+            projectHTML += `<div class="show-project">`
+            projectHTML += `<img src="${data.image}" height=400 width=400>`
+            projectHTML += `<p><label>Name:</label></p>`
+            projectHTML += `<p>${data.name}</p>`
+            projectHTML += `<p><label>Material:</label></p>`
+            projectHTML += `<p>${data.materials}</p>`
+            projectHTML += `<p><label>Length:</label></p>`
+            projectHTML += `<p>${data.length}</p>`
+            projectHTML += `<p><label>Themes:</label></p>`
+            projectHTML += `<p>${data.themes}</p>`
+            projectHTML += `Created by: ${data.user.name}`
+            projectHTML += `</div><br>`
+            $(".app-container").append(projectHTML)
+            // console.log(data)
         }
       })
       event.preventDefault()
