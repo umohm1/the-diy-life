@@ -12,12 +12,17 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap
 //= require_tree .
 
 
-(function() {
+(function(){
+    bindClickListeners()
+}())
+
+// Index Action
+
+function bindClickListeners() {
     $(document).on('click', '.otherProjects', function(event) {
         $('.app-container').html("")
         $.ajax({
@@ -30,40 +35,35 @@
                 for(var i = 0; i < data.length; i++) {
                     let name = data[i].name
                     let image = data[i].image
-                    // let user = '/users/${user}'
                     let projectHTML = ``
                     projectHTML += `<div class="row">`
                     projectHTML += `<div class="col-md-6">`
-                    projectHTML += `<a href="/users/${data[i].user.id}/projects/${data[i].id}">${name}</a>`
+                    projectHTML += `<a href="/users/${data[i].user.id}/projects/${data[i].id}"} data-project=${data[i].id} data-user=${data[i].user.id}>${name}</a>`
                     projectHTML += `<img src="${image}" height=500 width=500>`
                     projectHTML += `</div></div><br>`
                     $("#indexcontainer").append(projectHTML)
                     $("#title").css ({
                         'text-align': 'center'
                     })
-                    // $("<a>", {        //adding <a> tag stops preventDefault() from working
-                    //     href:
-                    // users/user_id/projects/id    //seen as literal string but is an integer. How to get the integer, no to_i can be used
-                    // "users/user[id]/projects/projects[id] ">
-                    // '/users/${user.id}/projects/${projects.id}'
-                    // users/${user_id}/projects/${projects_id}
-                    // "/users/" + users["id"] + "projects" + projects["id"]
-                    // })
-
-                    // $( "a" ).click(function(e) {
-                    //     e.preventDefault();
-                    //     // alert( "event occured" );
-
-                    //     $.ajax({
-                    //         type: 'GET',
-                    //         dataType: 'json',
-                    //         url: '/users/user_id/projects/id',
-                    //         success: function(data) {
-                    //         }                            //doesn't work
-                    // });
                 }
             }
         })
         event.preventDefault()
     })
-})()
+
+    $(document).on('click', '.col-md-6 a', function(event) {
+        var projectId = $(this).data('project');
+        var userId = $(this).data('user');
+        // console.log(projectId)
+        // console.log(userId)
+      $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: `/users/${userId}/projects/${projectId}`,
+        success: function(data) {
+            console.log(data)
+        }
+      })
+      event.preventDefault()
+    })
+}
