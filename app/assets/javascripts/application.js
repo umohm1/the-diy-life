@@ -51,19 +51,19 @@ function bindClickListeners() {
         event.preventDefault()
     })
 
-    $(document).on('click', '.col-md-6 a', function(event) {
+    $('.col-md-6 a').on('click', function(event) {
       var projectId = $(this).data('project');
       var userId = $(this).data('user');
       $(".app-container").html("")
+      debugger
       $.ajax({
         type: 'GET',
         dataType: 'json',
         url: `/users/${userId}/projects/${projectId}`,
         success: function(data) {
-            // debugger
             let projectHTML = ``
             projectHTML += `<div class="show-project">`
-            projectHTML += `<img src="${data.image}" data-img=${data.image} height=400 width=400>`
+            projectHTML += `<img src="${data.image}" height=400 width=400>`
             projectHTML += `<p><label>Name:</label></p>`
             projectHTML += `<p>${data.name}</p>`
             projectHTML += `<p><label>Material:</label></p>`
@@ -81,4 +81,7 @@ function bindClickListeners() {
       event.preventDefault()
     })
 }
-//Clicking on other projects create other show views not to render
+//Clicking on other projects show views not working - TypeError
+//Where event listener is attached
+//event delegation
+//double check data(project), data(user)
