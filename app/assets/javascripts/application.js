@@ -38,7 +38,7 @@ function bindClickListeners() {
                     let projectHTML = ``
                     projectHTML += `<div class="row">`
                     projectHTML += `<div class="col-md-6">`
-                    projectHTML += `<a href="/users/${data[i].user.id}/projects/${data[i].id}"} data-project=${data[i].id} data-user=${data[i].user.id}>${name}</a>`
+                    projectHTML += `<a class="show-link" href="/users/${data[i].user.id}/projects/${data[i].id}"} data-project=${data[i].id} data-user=${data[i].user.id}>${name}</a>`
                     projectHTML += `<img src="${image}" height=500 width=500>`
                     projectHTML += `</div></div><br>`
                     $("#indexcontainer").append(projectHTML)
@@ -51,11 +51,10 @@ function bindClickListeners() {
         event.preventDefault()
     })
 
-    $('.col-md-6 a').on('click', function(event) {
-      var projectId = $(this).data('project');
+    $(document).on('click', '.show-link', function(event) {
+      var projectId = $(this).data('project');   //now come back as undefined
       var userId = $(this).data('user');
       $(".app-container").html("")
-      debugger
       $.ajax({
         type: 'GET',
         dataType: 'json',
@@ -75,13 +74,8 @@ function bindClickListeners() {
             projectHTML += `Created by: ${data.user.name}`
             projectHTML += `</div><br><br>`
             $(".app-container").append(projectHTML)
-            // console.log(data)
         }
       })
       event.preventDefault()
     })
 }
-//Clicking on other projects show views not working - TypeError
-//Where event listener is attached
-//event delegation
-//double check data(project), data(user)
