@@ -82,18 +82,20 @@ function bindClickListeners() {
     })
 
 
-    $(document).on('submit', '.row', function(e) {
+    $(document).on('submit', '.new_project', function(e) {
         var userId = $(this).data('user');
+        var projectId = $(this).data('project');
+        console.log(data)
         $(".app-container").html("")
         $.ajax({
           type: 'POST',
-          dataType: 'json',
-          url: `/users/${userId}/projects/new`,
+          data: $(this).serialize(),
+          url: `/users/${userId}/projects/${projectId}`,
           success: function(data) {
-              console.log(data)
+            // console.log(data)
         }
     })
-        e.preventDefault()
+      e.preventDefault()
     })
 
 
