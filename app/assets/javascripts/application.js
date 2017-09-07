@@ -51,8 +51,10 @@ function bindClickListeners() {
         event.preventDefault()
     })
 
+// Show Action
+
     $(document).on('click', '.show-link', function(event) {
-      var projectId = $(this).data('project');   //now come back as undefined
+      var projectId = $(this).data('project');
       var userId = $(this).data('user');
       $(".app-container").html("")
       $.ajax({
@@ -62,7 +64,7 @@ function bindClickListeners() {
         success: function(data) {
             let projectHTML = ``
             projectHTML += `<div class="show-project">`
-            projectHTML += `<img src="${data.image}" height=400 width=400>`
+            projectHTML += `<img src="${data.image}" height=400 width=400><br></br>`
             projectHTML += `<p><label>Name:</label></p>`
             projectHTML += `<p>${data.name}</p>`
             projectHTML += `<p><label>Material:</label></p>`
@@ -72,10 +74,42 @@ function bindClickListeners() {
             projectHTML += `<p><label>Themes:</label></p>`
             projectHTML += `<p>${data.themes[0].name}</p>`
             projectHTML += `Created by: ${data.user.name}`
-            projectHTML += `</div><br><br>`
+            projectHTML += `</div>`
             $(".app-container").append(projectHTML)
         }
       })
       event.preventDefault()
     })
+
+
+    $(document).on('submit', '.row', function(e) {
+        var userId = $(this).data('user');
+        $(".app-container").html("")
+        $.ajax({
+          type: 'POST',
+          dataType: 'json',
+          url: `/users/${userId}/projects/new`,
+          success: function(data) {
+              console.log(data)
+        }
+    })
+        e.preventDefault()
+    })
+
+
 }
+
+
+
+
+
+
+
+
+
+    // function Project(name, materials, length, user_id) {
+    //     this.name = name
+    //     this.materials = materials
+    //     this.length = length
+    //     this.user_id = user_id
+    // }
