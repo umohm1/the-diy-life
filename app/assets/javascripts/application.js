@@ -84,6 +84,7 @@ function bindClickListeners() {
 
     $(document).on('submit', '.new_project', function(e) {
         var userId = $(this).data('user');
+        var projectId = $(this).data('project');
         $(".app-container").html("")
         $.ajax({
           type: 'POST',
@@ -102,8 +103,14 @@ function bindClickListeners() {
               projectHTML += `<p><label>Themes:</label></p>`
               projectHTML += `<p>${data.themes[0].name}</p>`
               projectHTML += `Created by: ${data.user.name}`
+              projectHTML += `<a href="/users/userId/projects/projectId/edit">Edit Project</a>`
               projectHTML += `</div>`
-              $(".app-container").append(projectHTML)  
+              $(".app-container").append(projectHTML)
+            //   if ($userId) {
+            //     $("").html("");
+            // } else {
+            //     $("").html("");
+            // }
         }
     })
       e.preventDefault()
