@@ -84,15 +84,15 @@ function bindClickListeners() {
 
     $(document).on('submit', '.new_project', function(e) {
         var userId = $(this).data('user');
-        var projectId = $(this).data('project');
-        console.log(data)
+        // var projectId = $(this).data('project');
+        // console.log(userId)
         $(".app-container").html("")
         $.ajax({
           type: 'POST',
           data: $(this).serialize(),
-          url: `/users/${userId}/projects/${projectId}`,
+          url: `/users/${userId}/projects`,
           success: function(data) {
-            // console.log(data)
+            console.log(data)
         }
     })
       e.preventDefault()

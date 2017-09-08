@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
   def create
     @project = current_user.projects.new(project_params)
      if @project.save
-       redirect_to user_project_path(current_user, @project)
+       render json: @project
      else
        render :new
     end
