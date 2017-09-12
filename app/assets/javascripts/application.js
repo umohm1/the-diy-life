@@ -77,20 +77,20 @@ function bindClickListeners() {
             projectHTML += `</div>`
             $(".app-container").append(projectHTML)
         }
-      })
+    })
       event.preventDefault()
     })
 
 
     $(document).on('submit', '.new_project', function(e) {
         var userId = $(this).data('user');
-        var projectId = $(this).data('project');
         $(".app-container").html("")
         $.ajax({
           type: 'POST',
           data: $(this).serialize(),
-          url: `/users/${userId}/projects`,
+          url: `/users/${userId}/projects/`,
           success: function(data) {
+            var projectId = data.id;
               let projectHTML = ``
               projectHTML += `<div class="show-project">`
               projectHTML += `<img src="${data.image}" height=400 width=400><br></br>`
@@ -103,16 +103,12 @@ function bindClickListeners() {
               projectHTML += `<p><label>Themes:</label></p>`
               projectHTML += `<p>${data.themes[0].name}</p>`
               projectHTML += `Created by: ${data.user.name}`
-              projectHTML += `<a href="/users/userId/projects/projectId/edit">Edit Project</a>`
+              projectHTML += `<a href="/users/${userId}/projects/${projectId}/edit"><br></br>Edit Project</a>`
+              projectHTML += `<a href="/users/${userId}/projects/${projectId}/" data-method='delete'><br></br>Delete Project</a>`
               projectHTML += `</div>`
               $(".app-container").append(projectHTML)
-            //   if ($userId) {
-            //     $("").html("");
-            // } else {
-            //     $("").html("");
-            // }
-        }
-    })
+            }
+        })
       e.preventDefault()
     })
 
@@ -124,12 +120,12 @@ function bindClickListeners() {
 
 
 
-
-
-
-    // function Project(name, materials, length, user_id) {
-    //     this.name = name
-    //     this.materials = materials
-    //     this.length = length
-    //     this.user_id = user_id
-    // }
+    function Project(id, name, materials, length, image, user, themes) {
+        this.id
+        this.name = name
+        this.materials = materials
+        this.length = length
+        this.image
+        this.user = user
+        this.themes = themes
+    }
