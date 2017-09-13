@@ -39,7 +39,7 @@ function bindClickListeners() {
                     projectHTML += `<div class="row">`
                     projectHTML += `<div class="col-md-6">`
                     projectHTML += `<a class="show-link" href="/users/${data[i].user.id}/projects/${data[i].id}"} data-project=${data[i].id} data-user=${data[i].user.id}>${name}</a>`
-                    projectHTML += `<img src="${image}" height=500 width=500>`
+                    projectHTML += `<img src="${image}" height=510 width=510>`
                     projectHTML += `</div></div><br>`
                     $("#indexcontainer").append(projectHTML)
                     $("#title").css ({
@@ -64,10 +64,10 @@ function bindClickListeners() {
         success: function(data) {
             let projectHTML = ``
             projectHTML += `<div class="show-project">`
-            projectHTML += `<img src="${data.image}" height=400 width=400><br></br>`
+            projectHTML += `<img src="${data.image}" height=500 width=500><br></br>`
             projectHTML += `<p><label>Name:</label></p>`
             projectHTML += `<p>${data.name}</p>`
-            projectHTML += `<p><label>Material:</label></p>`
+            projectHTML += `<p><label>Materials:</label></p>`
             projectHTML += `<p>${data.materials}</p>`
             projectHTML += `<p><label>Length:</label></p>`
             projectHTML += `<p>${data.length}</p>`
@@ -81,6 +81,7 @@ function bindClickListeners() {
       event.preventDefault()
     })
 
+// POST Request
 
     $(document).on('submit', '.new_project', function(e) {
         var userId = $(this).data('user');
@@ -111,21 +112,20 @@ function bindClickListeners() {
         })
       e.preventDefault()
     })
-
-
 }
 
-
-
-
-
+// JS Model Object
 
     function Project(id, name, materials, length, image, user, themes) {
-        this.id
-        this.name = name
-        this.materials = materials
-        this.length = length
-        this.image
-        this.user = user
-        this.themes = themes
+        this.id = id;
+        this.name = name;
+        this.materials = materials;
+        this.length = length;
+        this.image = image;
+        this.user = user;
+        this.themes = themes;
+    }
+
+    Project.prototype.getDate = function() {
+        
     }
