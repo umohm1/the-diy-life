@@ -126,6 +126,11 @@ function bindClickListeners() {
         this.themes = themes;
     }
 
-    Project.prototype.getDate = function() {
-        
+    Project.prototype.renderDate = function() {
+        var today = new Date();
+        var month = getMonth();
+        var day = getDay();
+        var year = getFullYear();
+        var todays_date = month + " " + day + "," + year
+        return todays_date;
     }
