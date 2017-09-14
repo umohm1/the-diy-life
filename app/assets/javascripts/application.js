@@ -128,9 +128,25 @@ function bindClickListeners() {
 
     Project.prototype.renderDate = function() {
         var today = new Date();
-        var month = getMonth();
-        var day = getDay();
-        var year = getFullYear();
-        var todays_date = month + " " + day + "," + year
-        return todays_date;
+        return today.slice(0,15)
+    }
+
+    $(function() {
+        $("form.new_project").on("submit", function(e) {
+            e.preventDefault();
+
+            var form = $(this);
+            var action = $form.attr("action");
+            var params = $form.serialize();
+
+            $.ajax({
+              type: 'POST',
+              data: $(this).serialize(),
+              url: `/users/${userId}/projects/`,
+              success: function(data) {
+                let newproject = new Project(project)
+                let = newProject.renderDate()
+                $("#form.new_project").append()
+                //where am I creating this new project
+        }
     }
