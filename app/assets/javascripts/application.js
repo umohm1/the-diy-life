@@ -51,6 +51,7 @@ function bindClickListeners() {
         event.preventDefault()
     })
 
+
 // Show Action
 
     $(document).on('click', '.show-link', function(event) {
@@ -138,15 +139,18 @@ function bindClickListeners() {
             var form = $(this);
             var action = $form.attr("action");
             var params = $form.serialize();
-
             $.ajax({
               type: 'POST',
-              data: $(this).serialize(),
-              url: `/users/${userId}/projects/`,
-              success: function(data) {
+              dataType: 'json',
+              data: params,
+              url: action
+              success: (function(json) {
                 let newproject = new Project(project)
-                let = newProject.renderDate()
-                $("#form.new_project").append()
+                let projectDate = newProject.renderDate()
+
+                $("#newProject").append(renderDate)
                 //where am I creating this new project
-        }
-    }
+                //do I need a projectHTML here?
+        })
+    });
+});
