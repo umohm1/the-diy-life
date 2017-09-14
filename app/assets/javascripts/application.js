@@ -144,8 +144,9 @@ function bindClickListeners() {
               dataType: 'json',
               data: params,
               url: action
-              success: (function(json) {
-                let newproject = new Project(project)
+            })
+              .success(function(json) {
+                let project = new Project(json)
                 let projectDate = newProject.renderDate()
 
                 $("#newProject").append(renderDate)
