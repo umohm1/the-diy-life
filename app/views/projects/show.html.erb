@@ -12,8 +12,7 @@
 <label>Theme:</label>
 <p><%= @project.theme_attributes %></p>
 
-Created by: <%= User.find(@project.user_id).name %> 
-<div id="newProject"></div>
+Created by: <%= User.find(@project.user_id).name %>
 <br></br>
 
 <% if current_user.id == @project.user_id %>

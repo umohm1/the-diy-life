@@ -92,66 +92,76 @@ function bindClickListeners() {
           data: $(this).serialize(),
           url: `/users/${userId}/projects/`,
           success: function(data) {
-            var projectId = data.id;
-              let projectHTML = ``
-              projectHTML += `<div class="show-project">`
-              projectHTML += `<img src="${data.image}" height=400 width=400><br></br>`
-              projectHTML += `<p><label>Name:</label></p>`
-              projectHTML += `<p>${data.name}</p>`
-              projectHTML += `<p><label>Material:</label></p>`
-              projectHTML += `<p>${data.materials}</p>`
-              projectHTML += `<p><label>Length:</label></p>`
-              projectHTML += `<p>${data.length}</p>`
-              projectHTML += `<p><label>Themes:</label></p>`
-              projectHTML += `<p>${data.themes[0].name}</p>`
-              projectHTML += `Created by: ${data.user.name}`
-              projectHTML += `<a href="/users/${userId}/projects/${projectId}/edit"><br></br>Edit Project</a>`
-              projectHTML += `<a href="/users/${userId}/projects/${projectId}/" data-method='delete'><br></br>Delete Project</a>`
-              projectHTML += `</div>`
-              $(".app-container").append(projectHTML)
-            }
+              let newProject = new Project(data)
+              let html = newProject.renderShow()
+              $('.app-container').append(html)
+          }
         })
       e.preventDefault()
     })
 }
 
+
 // JS Model Object
 
-    function Project(id, name, materials, length, image, user, themes) {
-        this.id = id;
-        this.name = name;
-        this.materials = materials;
-        this.length = length;
-        this.image = image;
-        this.user = user;
-        this.themes = themes;
+    function Project(project) {
+        this.id = project.id;
+        this.name = project.name;
+        this.materials = project.materials;
+        this.length = project.length;
+        this.image = project.image;
+        this.user = project.user;
+        this.themes = project.themes;
     }
 
-    Project.prototype.renderDate = function() {
-        var today = new Date();
-        return today.slice(0,15)
+    // Project.prototype.renderDate = function() {
+    //     var today = new Date();
+    //     return today.slice(0,15)
+    // }
+
+    Project.prototype.renderShow = function() {
+        var projectId = this.id;
+          let projectHTML = ``
+          projectHTML += `<div class="show-project">`
+          projectHTML += `<img src="${this.image}" height=400 width=400><br></br>`
+          projectHTML += `<p><label>Name:</label></p>`
+          projectHTML += `<p>${this.name}</p>`
+          projectHTML += `<p><label>Material:</label></p>`
+          projectHTML += `<p>${this.materials}</p>`
+          projectHTML += `<p><label>Length:</label></p>`
+          projectHTML += `<p>${this.length}</p>`
+          projectHTML += `<p><label>Themes:</label></p>`
+          projectHTML += `<p>${this.themes[0].name}</p>`
+          projectHTML += `Created by: ${this.user.name}`
+          projectHTML += `<a href="/users/${this.user.id}/projects/${projectId}/edit"><br></br>Edit Project</a>`
+          projectHTML += `<a href="/users/${this.user.id}/projects/${projectId}/" data-method='delete'><br></br>Delete Project</a>`
+          projectHTML += `</div>`
+          return projectHTML
     }
 
-    $(function() {
-        $("form.new_project").on("submit", function(e) {
-            e.preventDefault();
-
-            var form = $(this);
-            var action = $form.attr("action");
-            var params = $form.serialize();
-            $.ajax({
-              type: 'POST',
-              dataType: 'json',
-              data: params,
-              url: action
-            })
-              .success(function(json) {
-                let project = new Project(json)
-                let projectDate = newProject.renderDate()
-
-                $("#newProject").append(renderDate)
-                //where am I creating this new project
-                //do I need a projectHTML here?
-        })
-    });
-});
+    // $(function() {
+    //     $("form.new_project").on("submit", function(e) {
+    //         console.log('subbmited 2')
+    //         e.preventDefault();
+    //
+    //         var form = $(this);
+    //         var action = form.attr("action");
+    //         console.log(action)
+    //         var params = form.serialize();
+    //         $.ajax({
+    //           type: 'POST',
+    //           dataType: 'json',
+    //           data: params,
+    //           url: action
+    //         })
+    //           .success(function(json) {
+    //               console.log(json)
+    //             let newProject = new Project(json)
+    //             //let projectDate = newProject.renderDate()
+    //
+    //             $(".app-container").append(newProject.name)
+    //             //where am I creating this new project
+    //             //do I need a projectHTML here?
+    //     })
+    // });
+// });
