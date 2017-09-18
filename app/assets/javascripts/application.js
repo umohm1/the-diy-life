@@ -35,12 +35,13 @@ function bindClickListeners() {
                 for(var i = 0; i < data.length; i++) {
                     let name = data[i].name
                     let image = data[i].image
-                    let projectHTML = ``
-                    projectHTML += `<div class="row">`
-                    projectHTML += `<div class="col-md-6">`
-                    projectHTML += `<a class="show-link" href="/users/${data[i].user.id}/projects/${data[i].id}"} data-project=${data[i].id} data-user=${data[i].user.id}>${name}</a>`
-                    projectHTML += `<img src="${image}" height=510 width=510>`
-                    projectHTML += `</div></div><br>`
+                    let projectHTML = `
+                     <div class="row">
+                     <div class="col-md-6">
+                     <a class="show-link" href="/users/${data[i].user.id}/projects/${data[i].id}"} data-project=${data[i].id} data-user=${data[i].user.id}>${name}</a>
+                     <img src="${image}" height=505 width=505>
+                     </div></div><br>
+                     `
                     $("#indexcontainer").append(projectHTML)
                     $("#title").css ({
                         'text-align': 'center'
@@ -63,19 +64,20 @@ function bindClickListeners() {
         dataType: 'json',
         url: `/users/${userId}/projects/${projectId}`,
         success: function(data) {
-            let projectHTML = ``
-            projectHTML += `<div class="show-project">`
-            projectHTML += `<img src="${data.image}" height=500 width=500><br></br>`
-            projectHTML += `<p><label>Name:</label></p>`
-            projectHTML += `<p>${data.name}</p>`
-            projectHTML += `<p><label>Materials:</label></p>`
-            projectHTML += `<p>${data.materials}</p>`
-            projectHTML += `<p><label>Length:</label></p>`
-            projectHTML += `<p>${data.length}</p>`
-            projectHTML += `<p><label>Themes:</label></p>`
-            projectHTML += `<p>${data.themes[0].name}</p>`
-            projectHTML += `Created by: ${data.user.name}`
-            projectHTML += `</div>`
+            let projectHTML = `
+             <div class="show-project">
+             <img src="${data.image}" height=500 width=500><br></br>
+             <p><label>Name:</label></p>
+             <p>${data.name}</p>
+             <p><label>Materials:</label></p>
+             <p>${data.materials}</p>
+             <p><label>Length:</label></p>
+             <p>${data.length}</p>
+             <p><label>Themes:</label></p>
+             <p>${data.themes[0].name}</p>
+             Created by: ${data.user.name}
+             </div>
+             `
             $(".app-container").append(projectHTML)
         }
     })
@@ -95,7 +97,7 @@ function bindClickListeners() {
               let newProject = new Project(data)
               let html = newProject.renderShow()
               $('.app-container').append(html)
-          }
+            }
         })
       e.preventDefault()
     })
@@ -112,56 +114,47 @@ function bindClickListeners() {
         this.image = project.image;
         this.user = project.user;
         this.themes = project.themes;
+        this.created_at = project.created_at
     }
 
-    // Project.prototype.renderDate = function() {
-    //     var today = new Date();
-    //     return today.slice(0,15)
-    // }
+    Project.prototype.renderDate = function() {
+        var today = new Date(this.created_at);
+        var dd = today.getDate();
+        var mm = today.getMonth()+1;
+        var yyyy = today.getFullYear();
+
+        if(dd<10) {
+            dd = '0'+dd
+        }
+
+        if(mm<10) {
+            mm = '0'+mm
+        }
+
+        var projectDate = mm + '/' + dd + '/' + yyyy;
+        return projectDate;
+    }
+
+    Project.prototype.renderImage = function() {
+        return `<img src="${this.image}" height=400 width=400><br></br>`
+    }
 
     Project.prototype.renderShow = function() {
         var projectId = this.id;
-          let projectHTML = ``
-          projectHTML += `<div class="show-project">`
-          projectHTML += `<img src="${this.image}" height=400 width=400><br></br>`
-          projectHTML += `<p><label>Name:</label></p>`
-          projectHTML += `<p>${this.name}</p>`
-          projectHTML += `<p><label>Material:</label></p>`
-          projectHTML += `<p>${this.materials}</p>`
-          projectHTML += `<p><label>Length:</label></p>`
-          projectHTML += `<p>${this.length}</p>`
-          projectHTML += `<p><label>Themes:</label></p>`
-          projectHTML += `<p>${this.themes[0].name}</p>`
-          projectHTML += `Created by: ${this.user.name}`
-          projectHTML += `<a href="/users/${this.user.id}/projects/${projectId}/edit"><br></br>Edit Project</a>`
-          projectHTML += `<a href="/users/${this.user.id}/projects/${projectId}/" data-method='delete'><br></br>Delete Project</a>`
-          projectHTML += `</div>`
-          return projectHTML
-    }
-
-    // $(function() {
-    //     $("form.new_project").on("submit", function(e) {
-    //         console.log('subbmited 2')
-    //         e.preventDefault();
-    //
-    //         var form = $(this);
-    //         var action = form.attr("action");
-    //         console.log(action)
-    //         var params = form.serialize();
-    //         $.ajax({
-    //           type: 'POST',
-    //           dataType: 'json',
-    //           data: params,
-    //           url: action
-    //         })
-    //           .success(function(json) {
-    //               console.log(json)
-    //             let newProject = new Project(json)
-    //             //let projectDate = newProject.renderDate()
-    //
-    //             $(".app-container").append(newProject.name)
-    //             //where am I creating this new project
-    //             //do I need a projectHTML here?
-    //     })
-    // });
-// });
+          return `
+           <div class="show-project">
+           ${this.renderImage()}
+           <p><label>Name:</label></p>
+           <p>${this.name}</p>
+           <p><label>Material:</label></p>
+           <p>${this.materials}</p>
+           <p><label>Length:</label></p>
+           <p>${this.length}</p>
+           <p><label>Themes:</label></p>
+           <p>${this.themes[0].name}</p>
+           Created by: ${this.user.name} on ${this.renderDate()}
+           <a href="/users/${this.user.id}/projects/${projectId}/edit"><br></br>Edit Project</a>
+           <a href="/users/${this.user.id}/projects/${projectId}/" data-method='delete'><br></br>Delete Project</a>
+           </div>
+          `
+        }
