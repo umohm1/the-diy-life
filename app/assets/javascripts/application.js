@@ -84,15 +84,16 @@ function bindClickListeners() {
       event.preventDefault()
     })
 
+
 // POST Request
 
-    $(document).on('submit', '.new_project', function(e) {
+    $(document).on('submit', 'form.new_project', function(e) {
         var userId = $(this).data('user');
         $(".app-container").html("")
         $.ajax({
           type: 'POST',
-          data: $(this).serialize(),
           url: `/users/${userId}/projects/`,
+          data: $(this).serialize(), //problem!
           success: function(data) {
               let newProject = new Project(data)
               let html = newProject.renderShow()
@@ -108,10 +109,10 @@ function bindClickListeners() {
 
     function Project(project) {
         this.id = project.id;
+        this.image = project.image;
         this.name = project.name;
         this.materials = project.materials;
         this.length = project.length;
-        this.image = project.image;
         this.user = project.user;
         this.themes = project.themes;
         this.created_at = project.created_at
