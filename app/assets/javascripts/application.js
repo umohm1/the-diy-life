@@ -87,9 +87,12 @@ function bindClickListeners() {
 
 // POST Request
 
-    $(document).on('submit', 'form.new_project', function(e) {
+    $(document).on('submit', '.new_project', function(e) {
         var userId = $(this).data('user');
         $(".app-container").html("")
+        var formData = new FormData($(this)[0]);
+        debugger
+        console.log(formData)
         $.ajax({
           type: 'POST',
           url: `/users/${userId}/projects/`,
