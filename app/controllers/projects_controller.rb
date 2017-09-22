@@ -1,4 +1,3 @@
-require 'pry'
 class ProjectsController < ApplicationController
   before_action :find_user, only: [:new, :edit, :create]
 
@@ -29,7 +28,7 @@ class ProjectsController < ApplicationController
   def create
     @project = current_user.projects.new(project_params)
      if @project.save
-       render json: @project 
+       render json: @project
      else
        render :new
     end
