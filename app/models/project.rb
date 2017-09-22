@@ -8,7 +8,7 @@ class Project < ApplicationRecord
 
   validates_presence_of :name, :materials, :length
 
-  has_attached_file :image, styles: {medium: "300x300>", thumb: "100x100>" }, default_url: "https://placeimg.com/400/400/arch"
+  has_attached_file :image, styles: {medium: "300x300>", thumb: "100x100>" }, default_url: "http://lorempixel.com/output/abstract-q-c-400-400-8.jpg"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   scope :other_users_projects, -> (id) {where.not(user_id: id)}
