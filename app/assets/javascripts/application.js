@@ -85,27 +85,33 @@ function bindClickListeners() {
     })
 
 
+
 // POST Request
 
 $(document).on('submit', '.new_project', function(e) {
-    var userId = $(this).data('user');
-    $(".app-container").html("")
-    $.ajax({
-      type: 'POST',
-      url: `/users/${userId}/projects/`,
-      data: $(this).serialize(), //problem!
-      success: function(data) {
-          let newProject = new Project(data)
-          let html = newProject.renderShow()
-          $('.app-container').append(html)
-        }
+        var userId = $(this).data('user');
+        form_data = new FormData(this);
+        $(".app-container").html("")
+        $.ajax({
+          type: 'POST',
+          url: `/users/${userId}/projects/`,
+          data: form_data,
+          success: function(data) {
+              let newProject = new Project(data)
+              let html = newProject.renderShow()
+              $('.app-container').append(html)
+            },
+          cache: false,
+          contentType: false,
+          processData: false
+        })
+      e.preventDefault()
     })
-  e.preventDefault()
-  })
+}
 
 
 
-JS Model Object
+// JS Model Object
 
     function Project(project) {
         this.id = project.id;
