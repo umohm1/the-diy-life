@@ -29,24 +29,19 @@ function bindClickListeners() {
             type: 'GET',
             dataType: 'json',
             url: '/projects?other_users=true',
-            success: function(data) {
-                $(".app-container").html(`<div class="container" id="indexcontainer"></div>`)
-                $("#indexcontainer").html(`<h1><div class="col-md-15" id="title">New Projects!</div></h1>`)
-                for(var i = 0; i < data.length; i++) {
-                    let name = data[i].name
-                    let image = data[i].image
-                    let projectHTML = `
-                     <div class="row">
-                     <div class="col-md-6">
-                     <a class="show-link" href="/users/${data[i].user.id}/projects/${data[i].id}"} data-project=${data[i].id} data-user=${data[i].user.id}>${name}</a>
-                     <img src="${image}" height=505 width=505>
-                     </div></div><br>
-                     `
-                    $("#indexcontainer").append(projectHTML)
-                    $("#title").css ({
-                        'text-align': 'center'
-                    })
-                }
+            success: function(projects) {
+              $(".app-container").html(`<div class="container" id="indexcontainer"></div>`)
+              $("#indexcontainer").html(`<h1><div class="col-md-15" id="title">New Projects!</div></h1>`)
+              $("#title").css ({
+                  'text-align': 'center'
+              })
+
+              projects
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .forEach(projectAttributes => {
+                  const project = new Project(projectAttributes)
+                  $("#indexcontainer").append(project.renderProjectCard())
+                })
             }
         })
         event.preventDefault()
@@ -113,15 +108,21 @@ $(document).on('submit', '.new_project', function(e) {
 
 // JS Model Object
 
-    function Project(project) {
-        this.id = project.id;
-        this.image = project.image;
-        this.name = project.name;
-        this.materials = project.materials;
-        this.length = project.length;
-        this.user = project.user;
-        this.themes = project.themes;
-        this.created_at = project.created_at
+    function Project(attributes) {
+      for (var key in attributes) {
+        this[key] = attributes[key]
+      }
+    }
+
+    Project.prototype.renderProjectCard = function() {
+      return (`
+        <div class="row">
+          <div class="col-md-6">
+            <a class="show-link" href="/users/${this.user.id}/projects/${this.id}"} data-project=${this.id} data-user=${this.user.id}>${this.name}</a>
+            <img src="${this.image}" height=504 width=504>
+          </div>
+        </div><br>
+      `)
     }
 
     Project.prototype.renderDate = function() {
