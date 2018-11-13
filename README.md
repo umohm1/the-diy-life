@@ -3,6 +3,10 @@
 
 Web application that allows users to create DIY projects and find inspiration for their next upcoming projects from like minded users.
 
+## Screenshot
+
+![image](https://i.imgur.com/hnA0KKH.jpg)
+
 ## Installation
 
 1. Clone The DIY Life to your local computer
