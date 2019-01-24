@@ -2,13 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.jumbotron {
-padding-top: 0px;
-padding-bottom:0px;
-background-image:url('http://i.imgur.com/9EoE6lX.jpg');
-background-size: 100% 100%;
-height:850px;
- }
+// .jumbotron {
+//   padding-top: 0px;
+//   padding-bottom:0px;
+//   background-image:url('http://i.imgur.com/9EoE6lX.jpg');
+//   background-size: 100% 100%;
+//   height:850px;
+// }
 
 #footer {
   padding-top: 1em;
@@ -17,8 +17,41 @@ height:850px;
   position: relative;
 }
 
-.title {
+.buttons1 {
   text-align: center;
-  padding-top: 500px;
+  padding-top: 545px;
   padding-bottom: 500px;
+}
+
+.photo1 {
+  background-image: url('https://images.unsplash.com/photo-1541558297836-c686876cfd26?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1643&q=80');
+  background-size: 100% 100%;
+  border: 2px solid black;
+  width: 400px;
+  height: 400px;
+  padding: 25px;
+  margin: 25px;
+  float:right;
+}
+
+.photo2 {
+  background-image: url('http://i.imgur.com/9EoE6lX.jpg');
+  background-size: 100% 100%;
+  border: 2px solid black;
+  width: 400px;
+  height: 400px;
+  padding: 25px;
+  margin: 25px;
+  float:left;
+}
+
+.photo3 {
+  background-image: url('https://images.unsplash.com/photo-1536236155319-1edab471917c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2851&q=80');
+  background-size: 100% 100%;
+  border: 2px solid black;
+  width: 400px;
+  height: 400px;
+  padding: 25px;
+  margin: 54px;
+  float:left;
 }

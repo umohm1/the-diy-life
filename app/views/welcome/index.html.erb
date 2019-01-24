@@ -1,11 +1,13 @@
-<div class="center jumbotron container">
-  <h1><center>Welcome to The DIY Life</center></h1>
-  <div class="title">
-  <% if current_user %>
-  <%= link_to "Create A New Project", new_user_project_path(current_user), :class => "btn btn-success" %>
-  <% else %>
-  <%= link_to "Log In", new_user_session_path, :class => "btn btn-success" %>
-  <%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-success" %>
-</div>
+<div class="photo1"></div>
+<div class="photo2"></div>
+<div class="photo3"></div>
+<div class="buttons">
+    <div class=buttons1>
+      <% if current_user %>
+      <%= link_to "Create A New Project", new_user_project_path(current_user), :class => "btn btn-success" %>
+      <% else %>
+      <%= link_to "Log In", new_user_session_path, :class => "btn btn-success" %>
+      <%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-success" %>
+    </div>
   <% end %>
-</div>
+<div>

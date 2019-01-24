@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic");
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
 @import "bootstrap-sprockets";
 @import "bootstrap";
 /*!
@@ -4283,6 +4284,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   font-size: 19px;
   line-height: 21px;
   height: 60px;
+  font-family: 'Permanent Marker', cursive;
+  font-size: x-large;
 }
 .navbar-brand:hover,
 .navbar-brand:focus {
